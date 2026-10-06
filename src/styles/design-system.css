@@ -1,0 +1,572 @@
+:root {
+  /* Surfaces */
+  --canvas: #f5f7fa;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-inset: #f8fafc;
+  --surface-subtle: #f1f4f8;
+  --overlay: rgba(16, 26, 43, 0.42);
+
+  /* Text */
+  --text-primary: #172033;
+  --text-secondary: #68758a;
+  --text-tertiary: #98a3b3;
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border-subtle: #edf0f5;
+  --border-default: #e3e8f0;
+  --border-strong: #cfd8e5;
+
+  /* Accent */
+  --accent: #2563d9;
+  --accent-hover: #1d4fb5;
+  --accent-soft: #eaf1ff;
+  --accent-text: #1d4fb5;
+
+  /* Semantic states */
+  --success: #24734c;
+  --success-soft: #eaf7ef;
+  --warning: #9a6512;
+  --warning-soft: #fff6e4;
+  --danger: #b54235;
+  --danger-hover: #963429;
+  --danger-soft: #fff0ee;
+  --info: #2563d9;
+  --info-soft: #eaf1ff;
+
+  /* Typography */
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --text-display: clamp(2rem, 4vw, 2.5rem);
+  --text-page-title: clamp(1.625rem, 2.5vw, 1.875rem);
+  --text-section-title: 1.125rem;
+  --text-body: 0.9375rem;
+  --text-body-sm: 0.875rem;
+  --text-meta: 0.75rem;
+  --text-eyebrow: 0.6875rem;
+  --weight-regular: 450;
+  --weight-medium: 560;
+  --weight-semibold: 650;
+  --weight-bold: 720;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Shape and elevation */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --shadow-sm: 0 2px 8px rgba(16, 26, 43, 0.05);
+  --shadow-md: 0 12px 28px rgba(16, 26, 43, 0.08);
+  --shadow-lg: 0 24px 60px rgba(16, 26, 43, 0.18);
+  --focus-ring: rgba(37, 99, 217, 0.34);
+
+  /* Compatibility aliases for existing component selectors. */
+  --navy: var(--text-primary);
+  --navy-soft: #334158;
+  --muted: var(--text-secondary);
+  --muted-light: var(--text-tertiary);
+  --line: var(--border-default);
+  --line-strong: var(--border-strong);
+  --accent-dark: var(--accent-hover);
+  --shadow-subtle: var(--shadow-sm);
+
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:where(input, select, textarea) {
+  min-height: 44px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-inset);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+:where(textarea) { min-height: 96px; }
+:where(input, textarea)::placeholder { color: var(--text-tertiary); opacity: 1; }
+
+:where(input, select, textarea):disabled {
+  background: var(--surface-subtle);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+:where(input, select, textarea):focus-visible {
+  border-color: var(--accent);
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* Shared visual foundations; page selectors can continue to refine them. */
+.primary-action,
+.secondary-action,
+.danger-action {
+  min-height: 43px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.primary-action {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--text-inverse);
+  box-shadow: 0 1px 2px rgba(16, 26, 43, 0.08);
+}
+
+.primary-action:hover:not(:disabled) {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+  box-shadow: 0 5px 12px rgba(29, 79, 181, 0.18);
+  transform: translateY(-1px);
+}
+
+.secondary-action {
+  border-color: var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+.secondary-action:hover:not(:disabled) {
+  border-color: var(--border-default);
+  background: var(--surface-inset);
+}
+
+.danger-action {
+  border: 1px solid #efc6c0;
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.danger-action--solid {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: var(--text-inverse);
+}
+
+.danger-action--solid:hover:not(:disabled) {
+  border-color: var(--danger-hover);
+  background: var(--danger-hover);
+}
+
+.primary-action:disabled,
+.secondary-action:disabled,
+.danger-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+  box-shadow: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: var(--text-meta);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge--info { background: var(--info-soft); color: var(--info); }
+.badge--success { background: var(--success-soft); color: var(--success); }
+.badge--warning { background: var(--warning-soft); color: var(--warning); }
+.badge--danger { background: var(--danger-soft); color: var(--danger); }
+
+/* Keep the shared foundation authoritative while existing page selectors remain in place. */
+body .primary-action,
+body .secondary-action,
+body .danger-action {
+  min-height: 43px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+}
+
+body .primary-action {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--text-inverse);
+}
+
+body .primary-action:hover:not(:disabled) {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+body .secondary-action {
+  border-color: var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+body .secondary-action:hover:not(:disabled) { background: var(--surface-inset); }
+
+/* Operational UI family: page headers, directories, forms, and dialogs. */
+body .customers-page-header,
+body .jobs-page-header,
+body .team-page-header {
+  align-items: flex-end;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+body .customers-page-header h2,
+body .jobs-page-header h2,
+body .team-page-header h2 {
+  color: var(--text-primary);
+  font-size: var(--text-page-title);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+body .customers-page-header > div > p:last-child,
+body .jobs-page-header > div > p:last-child,
+body .team-page-header > div > p:last-child {
+  margin-top: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--text-body-sm);
+  line-height: 1.65;
+}
+
+body .customers-list,
+body .jobs-list,
+body .team-list {
+  overflow: hidden;
+  border-color: var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-sm);
+}
+
+body .customer-row,
+body .job-row,
+body .team-row {
+  min-height: 70px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-color: var(--border-subtle);
+  transition: background-color 150ms ease;
+}
+
+body .customer-row:not(.customer-row-heading):hover,
+body .job-row:not(.job-row-heading):hover,
+body .team-row:not(.team-row-heading):hover { background: #fbfcfe; }
+
+body .customer-row-heading,
+body .job-row-heading,
+body .team-row-heading {
+  min-height: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: var(--surface-inset);
+  color: var(--text-tertiary);
+  font-size: 0.625rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+}
+
+body .customer-primary strong,
+body .job-title strong,
+body .team-member strong {
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: var(--weight-semibold);
+}
+
+body .customer-email,
+body .customer-phone,
+body .customer-location,
+body .team-email,
+body .team-joined,
+body .job-customer,
+body .job-schedule,
+body .job-title span { color: var(--text-secondary); }
+
+body .customer-avatar,
+body .team-avatar {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #d8e4f8;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-weight: var(--weight-bold);
+}
+
+body .customer-status,
+body .job-status,
+body .job-priority,
+body .team-role {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 0.67rem;
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+}
+
+body .customer-status-active,
+body .job-status-completed,
+body .team-role-staff { background: var(--success-soft); color: var(--success); }
+body .customer-status-archived,
+body .job-priority-low { background: var(--surface-subtle); color: var(--text-secondary); }
+body .job-status-new,
+body .job-priority-normal,
+body .team-role-owner { background: var(--info-soft); color: var(--info); }
+body .job-status-scheduled,
+body .team-role-admin { background: #f1edff; color: #6852ae; }
+body .job-status-in-progress,
+body .job-priority-high { background: var(--warning-soft); color: var(--warning); }
+body .job-status-cancelled,
+body .job-priority-urgent { background: var(--danger-soft); color: var(--danger); }
+
+body .customer-actions,
+body .job-view-action,
+body .job-remove-assignment {
+  font-size: 0.75rem;
+  font-weight: var(--weight-semibold);
+}
+
+body .customer-actions button,
+body .job-view-action { color: var(--accent-text); }
+body .customer-actions .customer-archive-action,
+body .job-remove-assignment { color: var(--danger); }
+body .customer-actions button:hover,
+body .job-view-action:hover,
+body .job-remove-assignment:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+
+body .customer-directory-controls,
+body .job-directory-controls {
+  align-items: stretch;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+body .customer-search,
+body .job-search,
+body .customer-filter,
+body .job-filter {
+  min-height: 44px;
+  border-color: var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--surface-inset);
+  color: var(--text-tertiary);
+}
+
+body .customer-search:focus-within,
+body .job-search:focus-within,
+body .customer-filter:focus-within,
+body .job-filter:focus-within {
+  border-color: var(--accent);
+  background: var(--surface-raised);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+body .customer-search input,
+body .job-search input,
+body .customer-filter select,
+body .job-filter select {
+  min-height: 42px;
+  color: var(--text-primary);
+}
+
+body .customers-state,
+body .jobs-state,
+body .team-state {
+  min-height: 280px;
+  padding: var(--space-12) var(--space-8);
+  border-color: var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-sm);
+}
+
+body .customers-state h3,
+body .jobs-state h3,
+body .team-state h3 {
+  color: var(--text-primary);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-bold);
+}
+
+body .customers-state p,
+body .jobs-state p,
+body .team-state p { color: var(--text-secondary); font-size: var(--text-body-sm); }
+body .customers-error .welcome-icon,
+body .jobs-error .welcome-icon,
+body .team-error .welcome-icon { border-color: #f1cbc5; background: var(--danger-soft); color: var(--danger); }
+
+body .customers-success,
+body .jobs-success { color: var(--success); font-weight: var(--weight-semibold); }
+
+body .customer-modal-backdrop,
+body .job-modal-backdrop { background: var(--overlay); }
+
+body .customer-modal,
+body .job-modal,
+body .job-details-modal,
+body .customer-confirmation,
+body .job-confirmation {
+  border-color: var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-lg);
+}
+
+body .customer-modal-header,
+body .job-modal-header {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  padding: 28px 30px 22px;
+  border-color: var(--border-default);
+  background: var(--surface-raised);
+}
+
+body .customer-modal-header h2,
+body .job-modal-header h2,
+body .customer-confirmation h2,
+body .job-confirmation h2 {
+  color: var(--text-primary);
+  font-weight: var(--weight-bold);
+}
+
+body .customer-modal-header > div > p:last-child,
+body .job-modal-header > div > p:last-child,
+body .customer-confirmation > p:not(.customer-form-error),
+body .job-confirmation > p:not(.job-form-error) { color: var(--text-secondary); }
+
+body .customer-modal-close,
+body .job-modal-close {
+  width: 36px;
+  height: 36px;
+  border-color: var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--surface-inset);
+  color: var(--text-secondary);
+}
+
+body .customer-modal-close:hover:not(:disabled),
+body .job-modal-close:hover:not(:disabled) { border-color: var(--border-strong); background: var(--surface-subtle); color: var(--text-primary); }
+
+body .customer-form,
+body .job-form { padding: 28px 30px 30px; }
+
+body .customer-form-grid,
+body .job-form-grid { gap: 20px; }
+
+body .customer-form label,
+body .job-form label {
+  gap: 8px;
+  color: var(--text-primary);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-semibold);
+}
+
+body .customer-form label span,
+body .job-form label span { color: var(--danger); }
+
+body .customer-form input,
+body .customer-form textarea,
+body .job-form input,
+body .job-form textarea,
+body .job-form select,
+body .job-assignment-controls select {
+  min-height: 44px;
+  border-color: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-inset);
+  color: var(--text-primary);
+  font-size: var(--text-body-sm);
+}
+
+body .customer-form textarea,
+body .job-form textarea { min-height: 104px; }
+body .customer-form input:focus,
+body .customer-form textarea:focus,
+body .job-form input:focus,
+body .job-form textarea:focus,
+body .job-form select:focus,
+body .job-assignment-controls select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus-ring); }
+
+body .customer-form-error,
+body .job-form-error { color: var(--danger); font-weight: var(--weight-semibold); }
+body .job-form-note { border-color: #f0d9ae; border-radius: var(--radius-sm); background: var(--warning-soft); color: var(--warning); }
+
+body .customer-modal-actions,
+body .job-modal-actions {
+  margin-top: var(--space-8);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+body .archive-confirmation-action,
+body .job-cancel-action {
+  min-height: 43px;
+  border-radius: var(--radius-sm);
+  background: var(--danger);
+  color: var(--text-inverse);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+}
+
+body .archive-confirmation-action:hover:not(:disabled),
+body .job-cancel-action:hover:not(:disabled) { background: var(--danger-hover); }
+
+body .job-details-content { padding: 28px 30px 30px; }
+body .job-details-modal > .job-modal-actions { position: sticky; z-index: 1; bottom: 0; margin: 0; padding: var(--space-4) 30px 20px; background: var(--surface-raised); }
+body .job-details-grid dt { color: var(--text-tertiary); font-size: 0.625rem; font-weight: var(--weight-semibold); letter-spacing: 0.1em; }
+body .job-details-grid dd { color: var(--text-primary); font-size: var(--text-body-sm); }
+body .job-assignment-section,
+body .job-status-workflow { border-color: var(--border-subtle); }
+body .job-assignment-section h3,
+body .job-status-workflow h3 { color: var(--text-primary); font-size: var(--text-section-title); font-weight: var(--weight-bold); }
+body .job-assignment-list li { border-color: var(--border-default); border-radius: var(--radius-sm); background: var(--surface-inset); }
+body .job-assignment-summary { color: var(--text-tertiary); font-size: 0.69rem; font-weight: var(--weight-medium); }
+
+@media (max-width: 640px) {
+  body .customers-page-header,
+  body .jobs-page-header,
+  body .team-page-header { align-items: stretch; margin-bottom: var(--space-6); }
+  body .customers-add-button,
+  body .jobs-create-button { width: 100%; }
+  body .customer-row,
+  body .job-row,
+  body .team-row { min-height: 0; padding: 15px; }
+  body .customers-state,
+  body .jobs-state,
+  body .team-state { min-height: 240px; padding: var(--space-8) var(--space-6); }
+  body .customer-directory-controls,
+  body .job-directory-controls { gap: var(--space-2); }
+  body .customer-modal,
+  body .job-modal,
+  body .job-details-modal,
+  body .customer-confirmation,
+  body .job-confirmation { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  body .customer-modal-header,
+  body .job-modal-header,
+  body .customer-form,
+  body .job-form,
+  body .job-details-content,
+  body .job-details-modal > .job-modal-actions { padding-left: 20px; padding-right: 20px; }
+}
